@@ -17,7 +17,9 @@ This guide will focus on debug signing configuration, but the same steps should 
     - [Finding your Device's UDID](#finding-your-devices-udid)
     - [Registering the UDID in AppGallery console](#registering-the-udid-in-appgallery-console)
   - [5. Creating and Downloading the P7B Profile](#5-creating-and-downloading-the-p7b-profile)
-  - [Apply for HarmonyOS Profile](#apply-for-harmonyos-profile)
+  - [Add signature configuration](#add-signature-configuration)
+  - [Additional Resources](#additional-resources)
+  - [Conclusion](#conclusion)
 
 ---
 
@@ -39,7 +41,7 @@ Before proceeding, ensure that your have these requirements :
 
 ## 1. Generating a Keystore
 
-<details open>
+<details closed>
 <summary>Show details</summary>
 First, you need to generate a .p12 keystore. Follow these steps to create one:
 
@@ -65,7 +67,7 @@ After the above steps, you should now have `.p12` and `.csr` files, next steps w
 
 ## 2. Generate a certificate
 
-<details open>
+<details closed>
 <summary>show details</summary>
 
 Next, you need to upload the CSR file to Huawei AppGallery and download a `.cer` certificate.
@@ -84,11 +86,12 @@ Next, you need to upload the CSR file to Huawei AppGallery and download a `.cer`
 6. Click `download` to download `.cer` file  
    <img width="600" src="console_config/4_download_cer.PNG">
 7. After completing above steps, you should now have `.p12`, `.csr` and `.cer` files, its recommended to keep all of them in one folder
+
 </details>
 
 ## 3. Registering App ID
 
-<details open>  
+<details > 
 <summary>show details</summary>
 
 Lets your harmonyOS app in AppGallery Connect:
@@ -114,7 +117,7 @@ To run the app on test devices, you need to register the UDID (Unique Device Ide
 
 ### Finding your Device's UDID
 
-<details open> 
+<details >
 <summary>UDID of a HarmonyOS device (phone, tablet, smartwatch..)</summary>
 
 If the device support cable connection, the just plug it to your computer and enable `HDC debugging` from `developer options`, If device does not support cable like a smartwatch (e.g. Huawei watch 4), then follow these steps to connect it Wirelessly:
@@ -132,7 +135,7 @@ If the device support cable connection, the just plug it to your computer and en
 
 </details>
 
-<details open> 
+<details >
 <summary>UDID of a Lite HarmonyOS device (sportswatch..)</summary>
 
 For Lite devices like sportswatch (e.g. Huawei GT4), please follow these steps:
@@ -150,7 +153,7 @@ For Lite devices like sportswatch (e.g. Huawei GT4), please follow these steps:
 
 ### Registering the UDID in AppGallery console
 
-<details open>
+<details  >
 <summary>Show details</summary>
 After finding your device UDID, go back to Huawei Developer console and follow these steps:
 
@@ -167,22 +170,44 @@ To deploy the app to a test device, create and download a **P7B profile**.
 
 1. In **AppGallery Connect**, navigate to **Build > Signing Certificate**.
 2. Select **Create P7B Profile**.
+   <img width="700" src="console_config/10_add_profile.PNG"/>
 3. Choose the certificate you uploaded in step 3.
-4. Choose the target devices (add your test devices if necessary).
-5. Click **Generate**.
-6. After the profile is created, download the **P7B file** to your local machine.
+   <img width="700" src="console_config/11_select_cer.PNG" />
+
+   <img width="700" src="console_config/12_select_cer.PNG"/>
+
+4. Choose the test devices.
+   <img width="700" src="console_config/13_select_devices.PNG">
+   <img width="700" src="console_config/14_select_devices.PNG">
+
+5. Click **Ok** then **Generate**.
+6. After the profile is created, download the **P7B file** to save it along with other signature files
+   <img width="700" src="console_config/15_download_profile.PNG">
+
 </details>
 
-## Apply for HarmonyOS Profile
+## Add signature configuration
+
+1. in DevEco studio, go to **File** > **project strcture**
+2. Go to **Project**, **singing configs**
+3. untick (de-select) `automatically generate certificate`
+4. Fill the form
+   1. select the `.p12` keystore generate in **STEP 1**
+   2. Enter the store password
+   3. Enter the key alias name
+   4. Enter the key password
+   5. Select the `.p7b` profile download in **STEP 5**
+   6. Select the `.cer` certificate download in **STEP 2**
+5. click **OK** and wait for the IDE to sync the project
+
+   <img width="700" src="console_config/16_signing_configs.PNG">
 
 ---
 
-<!--
 ## Additional Resources
 
+- [Signing your App/Service](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-signing-V5)
 - [Huawei AppGallery Connect Documentation](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-get-started-0000001053628149)
-- [Keytool Documentation](https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html)
-- [OpenSSL Documentation](https://www.openssl.org/docs/)
 
 ---
 

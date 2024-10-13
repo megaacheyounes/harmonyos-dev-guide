@@ -11,27 +11,58 @@ Welcome to the **HarmonyOS LiteWearable Development Guide**! This guide will wal
 - [HarmonyOS LiteWearable Development Guide](#harmonyos-litewearable-development-guide)
   - [Introduction](#introduction)
   - [Table of Contents](#table-of-contents)
+  - [Disclaimer](#disclaimer)
+  - [Contribution](#contribution)
   - [Requirements](#requirements)
-    - [4. **Other Tools**](#4-other-tools)
+    - [Environment](#environment)
+    - [**Other Tools**](#other-tools)
+    - [**Testing device**](#testing-device)
   - [Creating and Configuring an App on Huawei AppGallery Console](#creating-and-configuring-an-app-on-huawei-appgallery-console)
     - [1. **Create an App on AppGallery Connect**](#1-create-an-app-on-appgallery-connect)
     - [1. **Configure APIs and Permissions**](#1-configure-apis-and-permissions)
     - [1. **Download the JSON Configuration File**](#1-download-the-json-configuration-file)
-  - [Developing the Application](#developing-the-application)
+  - [HarmonyOS vs HarmonyOS NEXT](#harmonyos-vs-harmonyos-next)
+  - [Developing sammple app for LiteWearable (using web languages)](#developing-sammple-app-for-litewearable-using-web-languages)
     - [1. **Project Creation in DevEco Studio**](#1-project-creation-in-deveco-studio)
     - [2. **Fetching User Location**](#2-fetching-user-location)
       - [Step 1: Set Required Permissions](#step-1-set-required-permissions)
       - [Step 2: Implement the Location Fetching Logic](#step-2-implement-the-location-fetching-logic)
       - [Step 3: Design the UI](#step-3-design-the-ui)
+  - [Configure the singing config](#configure-the-singing-config)
   - [Running the App](#running-the-app)
     - [Running on Simulator](#running-on-simulator)
     - [Running on a Physical Device](#running-on-a-physical-device)
+    - [automated installation](#automated-installation)
+  - [Release](#release)
+    - [common installation error](#common-installation-error)
+    - [INSTALLATION FAILED: 10. Internal error](#installation-failed-10-internal-error)
+    - [INSTALLATION FAILED: 31. failed to verify signature](#installation-failed-31-failed-to-verify-signature)
+  - [Important consideration](#important-consideration)
   - [Additional Resources](#additional-resources)
+  - [Technical Support](#technical-support)
   - [Conclusion](#conclusion)
 
 ---
 
+## Disclaimer
+
+This guide is not an official resources. It has not being reviewed nor approved by Huawei.
+
+Its meant to help developers get started with HarmonyOS development quickly without referring to the lengthy and complex official documentation.
+
+This guide will mostly focus on developing for Huawei LiteWearables (Watch GT series) and can apply to other Huawei devices.
+
+Please refer to the official documentation for more up-to-date and accurate information: [official HarmonyOS documentation](https://developer.harmonyos.com/en/docs/documentation)
+
+## Contribution
+
+All kind of contributions are welcome!
+
+If you find any mistakes or inaccurate information, please do [create and issue](https://github.com/megaacheyounes/harmonyos-dev-guide/issues/new) or feel free to open a pull request. I would be very thankful
+
 ## Requirements
+
+### Environment
 
 Before starting development, ensure your system meets the following requirements:
 
@@ -41,14 +72,20 @@ Before starting development, ensure your system meets the following requirements
 
 - [ ] **HarmonyOS SDK**: The HarmonyOS SDK provides essential tools, libraries, and APIs for development. You can download SDK from within DevEco studio by going to **Tools** > **SDK Manager**, it is recommended to download SDK 3.0.0 (API 8) or newer You can install the SDK from within DevEco Studio after setting it up: [Install HarmonyOS SDK](https://developer.harmonyos.com/en/docs/documentation/doc-guides/ide-toolkit-0000001070643051)
 
-- [ ] **Node.js**: Node.js is required for JavaScript-based HarmonyOS development. Download and install Node.js from the official website: [Download Node.js](https://nodejs.org/en/download/)
+- [ ] **Node.js**: Node.js is required for JavaScript-based HarmonyOS development. Its usually installed by DevEco studio, but you can also Download and install it from the official website: [Download Node.js](https://nodejs.org/en/download/)
 
-### 4. **Other Tools**
+### **Other Tools**
 
 - [ ] **JDK 1.8 or later**: Ensure you have the Java Development Kit installed.
 - [ ] **Git**: Version control tool for managing your codebase.
 
 ---
+
+### **Testing device**
+
+To be able to run the app on physical watch, you need:
+
+- [ ] **Huawei Health**: Huawei health is required for LiteWearable (GT series), download it from AppGallery on your Huawei phone. for other Android phone, you have to download the APK from: [https://consumer.huawei.com/ae-en/mobileservices/health/](Huawei Health)
 
 ## Creating and Configuring an App on Huawei AppGallery Console
 
@@ -72,7 +109,28 @@ After setting up APIs, download the **agconnect-services.json** file and place i
 
 ---
 
-## Developing the Application
+## HarmonyOS vs HarmonyOS NEXT
+
+HarmonyOS which was a dual-framework OS (HarmonyOS + Android) is replaced with HarmonyOS NEXT, which is Huawei's first truly independent operating system.
+
+If you are just starting developing for Huawei devices, it may be a better idea to start with HarmonyOS NEXT, as HarmonyOS is being phased out.
+
+| Feature                       | HarmonyOS                                                         | HarmonyOS NEXT                                                                                                                                                                                                                                                                                                                                                |
+| ----------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Platform Type**             | Multi-device OS (phones, tablets, smart TVs, IoT, etc.)           | Designed primarily for smart devices, specifically aiming at mobile phones initially                                                                                                                                                                                                                                                                          |
+| **Code Compatibility**        | Supports Android apps via compatibility layer (e.g., APK support) | Doesn't support Android APKs, uses its own application framework called ArkUI                                                                                                                                                                                                                                                                                 |
+| **App Development Framework** | JavaScript/Java and HarmonyOS UI framework                        | Javascript and ArkUI, which uses TypeScript and declarative UI similar to Flutter                                                                                                                                                                                                                                                                             |
+| **Open Source**               | Partially open-source (OpenHarmony)                               | Fully open-source version of HarmonyOS                                                                                                                                                                                                                                                                                                                        |
+| **Market Focus**              | Wide range of devices (phones, tablets, wearables)                | Everything included in harmonyOS and more (e.g cars infotainment systems), and soon to include all Huawei devices including IoT devices (e.g speakers, smart airfryer, smart curtains..). Initially focused on mobile but quickly supporting other device types, HarmonyOS NEXT is designed to be independent mobile ecosystem competing with Android and iOS |
+| **App Store**                 | Huawei AppGallery and other Android-compatible app stores         | HarmonyOS NEXT-specific app store, targeting apps built on ArkUI and native frameworks                                                                                                                                                                                                                                                                        |
+| **Backward Compatibility**    | Compatible with existing HarmonyOS 2.x/3.x devices                | Not backward compatible with older HarmonyOS devices or Android apps                                                                                                                                                                                                                                                                                          |
+| **Development Language**      | JavaScript, Java, C/C++                                           | ArkTs, ArkUI, and C/C++ with ArkCompiler                                                                                                                                                                                                                                                                                                                      |
+
+> The above mentioned differences does not apply to LiteWearables, you still have to use Javascript for development, the project structure may change but end-user will have same User experience.
+
+## Developing sammple app for LiteWearable (using web languages)
+
+This section describes how to create sample app for fetching user's location on Huawei LiteWearable device (smart sportswatch)
 
 ### 1. **Project Creation in DevEco Studio**
 
@@ -80,7 +138,7 @@ Follow these steps to create a project in DevEco Studio:
 
 1. Open **DevEco Studio**.
 2. Click on **"New Project"** and choose **HarmonyOS Wearable** as the template.
-3. Enter the project details such as **Package Name**, **App Name**, and **Minimum API Level**.
+3. Enter the project details such as **Package Name (bundle name)**, **App Name**, and **API Level**.
 
 ### 2. **Fetching User Location**
 
@@ -143,9 +201,16 @@ In your `index.hml` file, design the user interface to display the location:
     <text class="location-value">Longitude: {{longitude}}</text>
   </div>
 </template>
+```
 
+In `index.css`:
+
+```css
 <style>
 .container {
+  height:100%;
+  width:100%;
+  display:flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -160,11 +225,15 @@ In your `index.hml` file, design the user interface to display the location:
 
 ---
 
+## Configure the singing config
+
+Before running or releasing the app, you must setup the signing configuration, which is annoyingly lengthy and complicated, it has been documented in the separate file: [signing_configuration.md](https://github.com/megaacheyounes/harmonyos-dev-guide/blob/master/signing_config.md)
+
 ## Running the App
 
 ### Running on Simulator
 
-1. In **DevEco Studio**, go to **Device Manager**.
+1. In **DevEco Studio** device selector, choose **Device Manager**.
 2. Select **Wearable Emulator** and create a new wearable simulator.
 3. Build and run the project on the simulator.
 4. Use the simulator tools to test features such as **Location Services**.
@@ -173,20 +242,96 @@ In your `index.hml` file, design the user interface to display the location:
 
 1. **Enable Developer Options** on your HarmonyOS LiteWearable device:
    - Go to **Settings** > **About Device** and tap **Build Number** multiple times to enable Developer Mode.
-2. Enable **ADB Debugging** on the device.
-3. Connect the device to your computer via USB or Wi-Fi.
-4. In **DevEco Studio**, select the physical device from the **Device Manager**.
-5. Build and run the app on the physical device to test on real hardware.
+2. Connect your phone to your computer via USB.
+3. In **DevEco Studio**, go To **Build** -> **build HAP(s) & APP(s)** -> **build APP(s)**.
+4. Locate the app debug package `.hap` at `/build/output/default/entry-default-signed.hap`.
+5. send the package to your phone at path `/sdcard/haps`: `adb push entry-default-signed.hap /sdcard/haps` or `hdc file push entry-default-signed.hap /sdcard/haps`
+6. open DevEco Assistant App on your phone, go to Apps, then click **install**
+7. after successful installation, start the app manually on the watch
+
+### automated installation
+
+Building the app, moving the package to you phone and manually installing each time, is a hustle and can slow development, but you can use the scripts in `/scripts` to automate that.
+
+1. copy `scripts/ADB_RUN.bat` (or `scripts/HDC_RUN.bat`) to your project
+2. open the script and update the variables `node` and `hvigor` based on your DevEco studio installation location
+3. connect your phone to your PC via USB and make sure its unlocked and USB debugging is is enabled
+4. open a terminal or CMD, and run the script: `$ ./ADB_RUN.bat`
+
+> if the script fail to click the install button on your phone, then update the screen coordinates of the install button
+> at line 48: adb shell input tap <position-x> <position-y>
+
+## Release
+
+> you can not install release app on the watch manually, release and debug APK usually are the same, the only difference is the signature
+
+-
+
+1. Configure release signature
+2. Build release `.app` package, in DevEco studio: go To **Build** > **build HAP(s) & APP(s)** > **build APP(s)**
+3. find the `.app` package in `/build/output/default/entry-default-signed.app`
+4. Go To AppGallery console -> apps -> HarmonyOS -> <app name> -> new Version
+5. update package, fill in 'whats new' and submit
+
+Detailed instructions here: [Releasing a HarmonyOS App](https://developer.huawei.com/consumer/en/doc/app/agc-help-harmonyos-releaseapp-0000001914554900)
+
+### common installation error
+
+### INSTALLATION FAILED: 10. Internal error
+
+Common reason for this error include:
+
+1. Using API version that's not supported by the device, lower the API level in `build-profile.json5` and try again.
+2. Using advance or modern JS features/syntax that are not supported by the LiteWearable device, example
+
+```js
+const [var1, var2] = "11:20".split(":");
+```
+
+3. Missing resources like **icon**, or using a **string** resource that do not exist
+
+### INSTALLATION FAILED: 31. failed to verify signature
+
+This more of a bug that an error, some ways to solve this:
+
+1. restart the watch, restart Huawei Health app and DevEco assistant app
+2. Generate new debug signing config
+3. Ensure that the watch's UDID is included in the profile file `.p7b`
 
 ---
+
+> more errors will be added soon
+
+## Important consideration
+
+Its important to keep these points in mind when developing for HarmonyOS LiteWearables:
+
+1. LiteWearable may have 1GB memory or less, each page (screen) has 48 KB size limit
+2. LiteWearable devices may have 32 GB storage only, the package (.hap) can not be bigger than 10MB
+3. use `.jpg` instead of `.png` whenever is possible, and use resolution of 454x454 pixels
+4. navigation Router do not have back stack, you can't navigate back, design your app accordingly
+5. app may get interrupted randomly, use lifecycle methods to update data and UI when a screen is shown
+6. break down large classes into separate files, each function in a separate file, to reduce overall page size
+7. code is executed during runtime not compiled, you have to optimize the code and remove unused code/imports manually
+8. many system features are not available or limited on LiteWearable due to limited resources, like Alarm, playing videos and audio, picking files, and many more
+9. app can not run in the background, and cannot be resumed in the same state after re-launching it from history stack
 
 ## Additional Resources
 
 - [HarmonyOS Documentation](https://developer.harmonyos.com/en/docs/documentation)
+- [HarmonyOS development documentation](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/application-dev-guide-V5)
+- [HarmonyOS LiteWearable documentation (javascript)](https://developer.huawei.com/consumer/en/doc/harmonyos-references-V2/js-components-common-attributes-0000001427744868-V2)
+- [DevEco Studio documentation](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/ide-tools-overview-V5)
 - [Huawei LiteWearable API Reference](https://developer.harmonyos.com/en/docs/documentation/doc-guides/wearable-overview-0000001054916109)
 - [AppGallery Connect Documentation](https://developer.huawei.com/consumer/en/doc/development/AppGallery-connect-Guides/agc-get-started-0000001053628149)
 
 ---
+
+## Technical Support
+
+1. Ask the community: [Huawei Developer Forum](https://forums.developer.huawei.com/forumPortal/en/home)
+2. Create a support ticket: [Huawei developer support](https://developer.huawei.com/consumer/en//support/feedback/)
+3. Reach out to: [younes.megaache@huawei.com](mailto:younes.megaache@huawei.com)
 
 ## Conclusion
 
