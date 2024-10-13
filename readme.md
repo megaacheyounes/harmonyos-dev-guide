@@ -1,18 +1,38 @@
-# HarmonyOS LiteWearable Development Guide
+# HarmonyOS LiteWearable Development Guide (unofficial)
 
 ## Introduction
 
-Welcome to the **HarmonyOS LiteWearable Development Guide**! This guide will walk you through the steps required to develop applications for Huawei's **LiteWearable devices** running HarmonyOS. The guide includes setting up the development environment, creating an app, and building a simple one-screen application to fetch and display the user's location.
+Welcome to the **HarmonyOS LiteWearable Development Guide**! This guide will walk you through the steps required to develop applications for Huawei's HarmonyOS devices and **LiteWearable devices**. The guide includes setting up the development environment, creating an app, and building a simple one-screen application to fetch and display the user's location.
+
+---
+
+## Disclaimer
+
+This guide is not an official resources. It has not being reviewed nor approved by Huawei.
+
+Its meant to help developers get started with HarmonyOS development quickly without referring to the lengthy and complex official documentation.
+
+This guide will mostly focus on developing for Huawei LiteWearables (Watch GT series) and can apply to other Huawei devices.
+
+Please refer to the official documentation for more up-to-date and accurate information: [official HarmonyOS documentation](https://developer.harmonyos.com/en/docs/documentation)
+
+## Contribution
+
+> **This guide is not complete. Its being actively developed and maintained, more content and information will be added soon!**
+
+All kind of contributions are welcome!
+
+If you find any mistakes or inaccurate information, please do [create and issue](https://github.com/megaacheyounes/harmonyos-dev-guide/issues/new) or feel free to open a pull request. I would be very thankful
 
 ---
 
 ## Table of Contents
 
-- [HarmonyOS LiteWearable Development Guide](#harmonyos-litewearable-development-guide)
+- [HarmonyOS LiteWearable Development Guide (unofficial)](#harmonyos-litewearable-development-guide-unofficial)
   - [Introduction](#introduction)
-  - [Table of Contents](#table-of-contents)
   - [Disclaimer](#disclaimer)
   - [Contribution](#contribution)
+  - [Table of Contents](#table-of-contents)
   - [Requirements](#requirements)
     - [Environment](#environment)
     - [**Other Tools**](#other-tools)
@@ -34,31 +54,15 @@ Welcome to the **HarmonyOS LiteWearable Development Guide**! This guide will wal
     - [Running on a Physical Device](#running-on-a-physical-device)
     - [automated installation](#automated-installation)
   - [Release](#release)
-    - [common installation error](#common-installation-error)
+  - [common installation error](#common-installation-error)
     - [INSTALLATION FAILED: 10. Internal error](#installation-failed-10-internal-error)
     - [INSTALLATION FAILED: 31. failed to verify signature](#installation-failed-31-failed-to-verify-signature)
-  - [Important consideration](#important-consideration)
+  - [Important consideration when developing for LiteWearables](#important-consideration-when-developing-for-litewearables)
   - [Additional Resources](#additional-resources)
   - [Technical Support](#technical-support)
   - [Conclusion](#conclusion)
 
 ---
-
-## Disclaimer
-
-This guide is not an official resources. It has not being reviewed nor approved by Huawei.
-
-Its meant to help developers get started with HarmonyOS development quickly without referring to the lengthy and complex official documentation.
-
-This guide will mostly focus on developing for Huawei LiteWearables (Watch GT series) and can apply to other Huawei devices.
-
-Please refer to the official documentation for more up-to-date and accurate information: [official HarmonyOS documentation](https://developer.harmonyos.com/en/docs/documentation)
-
-## Contribution
-
-All kind of contributions are welcome!
-
-If you find any mistakes or inaccurate information, please do [create and issue](https://github.com/megaacheyounes/harmonyos-dev-guide/issues/new) or feel free to open a pull request. I would be very thankful
 
 ## Requirements
 
@@ -79,13 +83,13 @@ Before starting development, ensure your system meets the following requirements
 - [ ] **JDK 1.8 or later**: Ensure you have the Java Development Kit installed.
 - [ ] **Git**: Version control tool for managing your codebase.
 
----
-
 ### **Testing device**
 
 To be able to run the app on physical watch, you need:
 
 - [ ] **Huawei Health**: Huawei health is required for LiteWearable (GT series), download it from AppGallery on your Huawei phone. for other Android phone, you have to download the APK from: [https://consumer.huawei.com/ae-en/mobileservices/health/](Huawei Health)
+
+---
 
 ## Creating and Configuring an App on Huawei AppGallery Console
 
@@ -127,6 +131,8 @@ If you are just starting developing for Huawei devices, it may be a better idea 
 | **Development Language**      | JavaScript, Java, C/C++                                           | ArkTs, ArkUI, and C/C++ with ArkCompiler                                                                                                                                                                                                                                                                                                                      |
 
 > The above mentioned differences does not apply to LiteWearables, you still have to use Javascript for development, the project structure may change but end-user will have same User experience.
+
+---
 
 ## Developing sammple app for LiteWearable (using web languages)
 
@@ -227,7 +233,7 @@ In `index.css`:
 
 ## Configure the singing config
 
-Before running or releasing the app, you must setup the signing configuration, which is annoyingly lengthy and complicated, it has been documented in the separate file: [signing_configuration.md](https://github.com/megaacheyounes/harmonyos-dev-guide/blob/master/signing_config.md)
+Before running or releasing the app, you must setup the signing configuration, which is annoyingly lengthy and complicated, it has been documented in the separate file: [signature_configuration.md](https://github.com/megaacheyounes/harmonyos-dev-guide/blob/master/signing_config.md)
 
 ## Running the App
 
@@ -265,8 +271,6 @@ Building the app, moving the package to you phone and manually installing each t
 
 > you can not install release app on the watch manually, release and debug APK usually are the same, the only difference is the signature
 
--
-
 1. Configure release signature
 2. Build release `.app` package, in DevEco studio: go To **Build** > **build HAP(s) & APP(s)** > **build APP(s)**
 3. find the `.app` package in `/build/output/default/entry-default-signed.app`
@@ -275,7 +279,11 @@ Building the app, moving the package to you phone and manually installing each t
 
 Detailed instructions here: [Releasing a HarmonyOS App](https://developer.huawei.com/consumer/en/doc/app/agc-help-harmonyos-releaseapp-0000001914554900)
 
-### common installation error
+---
+
+## common installation error
+
+<!-- todo: move to separate file -->
 
 ### INSTALLATION FAILED: 10. Internal error
 
@@ -298,11 +306,11 @@ This more of a bug that an error, some ways to solve this:
 2. Generate new debug signing config
 3. Ensure that the watch's UDID is included in the profile file `.p7b`
 
----
-
 > more errors will be added soon
 
-## Important consideration
+---
+
+## Important consideration when developing for LiteWearables
 
 Its important to keep these points in mind when developing for HarmonyOS LiteWearables:
 
@@ -318,6 +326,7 @@ Its important to keep these points in mind when developing for HarmonyOS LiteWea
 
 ## Additional Resources
 
+- [HarmonyOS tips](https://github.com/megaacheyounes/harmonyos-dev-guide/blob/master/tips.md)
 - [HarmonyOS Documentation](https://developer.harmonyos.com/en/docs/documentation)
 - [HarmonyOS development documentation](https://developer.huawei.com/consumer/en/doc/harmonyos-guides-V5/application-dev-guide-V5)
 - [HarmonyOS LiteWearable documentation (javascript)](https://developer.huawei.com/consumer/en/doc/harmonyos-references-V2/js-components-common-attributes-0000001427744868-V2)
@@ -335,6 +344,8 @@ Its important to keep these points in mind when developing for HarmonyOS LiteWea
 
 ## Conclusion
 
-You are now set up to start developing applications for Huawei LiteWearable devices using HarmonyOS. This guide covered the basic setup, app creation, running on simulators and physical devices, and a simple example to fetch the user's location. For more advanced use cases, refer to the official documentation and API references.
+You are now set up to start developing applications for Huawei HarmonyOS and HarmonyOS LiteWearable devices. This guide covered the basic setup, signature configuration, running on simulators and physical devices, and a simple example to fetch the user's location. For more advanced use cases, refer to the official documentation and API references.
 
 Happy coding!
+
+> [Younes Megaache](https://younes-megaache.com)
