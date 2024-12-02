@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/6290489d-25d5-4d9a-800d-40facc2a1a80)# HarmonyOS LiteWearable Development Guide (unofficial)
+# HarmonyOS LiteWearable Development Guide (unofficial)
 
 ## Introduction
 
