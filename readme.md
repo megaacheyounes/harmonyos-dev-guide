@@ -1,4 +1,4 @@
-# HarmonyOS LiteWearable Development Guide (unofficial)
+![image](https://github.com/user-attachments/assets/6290489d-25d5-4d9a-800d-40facc2a1a80)# HarmonyOS LiteWearable Development Guide (unofficial)
 
 ## Introduction
 
@@ -88,6 +88,16 @@ Before starting development, ensure your system meets the following requirements
 To be able to run the app on physical watch, you need:
 
 - [ ] **Huawei Health**: Huawei health is required for LiteWearable (GT series), download it from AppGallery on your Huawei phone. for other Android phone, you have to download the APK from: [https://consumer.huawei.com/ae-en/mobileservices/health/](Huawei Health)
+
+### Download SDK manually 
+
+If you can't download the SDK through DevEco IDE, you can manually downlod the SDK from Google Drive, API 6 only For MS Windows (For MacOS or other APIs, please create an issue and I will look into it)
+
+1. download the SDK: [Google Drive Link](https://drive.google.com/file/d/1csHeNMpfn127kCwJa6XGwft4epv84MD5/view?usp=drive_link)
+2. unzip the archive into a folder (example: `D://_HarmonyOS/sdk_api6`)
+3. Open DevEco Studio, go to **File** > **Settings** > **SDK**, then click **Edit** and select the folder where you have unzipped the archive (`D://harmonyOS/sdk_api6`)
+4. 
+![image](https://github.com/user-attachments/assets/bdc0e9df-98cc-42c9-8534-273b7cc10cd6)
 
 ---
 
