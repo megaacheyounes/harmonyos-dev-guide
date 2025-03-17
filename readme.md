@@ -349,8 +349,7 @@ Its important to keep these points in mind when developing for HarmonyOS LiteWea
 ## Technical Support
 
 1. Ask the community: [Huawei Developer Forum](https://forums.developer.huawei.com/forumPortal/en/home)
-2. Create a support ticket: [Huawei developer support](https://developer.huawei.com/consumer/en//support/feedback/)
-3. Reach out to: [younes.megaache@huawei.com](mailto:younes.megaache@huawei.com)
+2. Create a support ticket: [Huawei developer support](https://developer.huawei.com/consumer/en//support/feedback/) 
 
 ## Conclusion
 
