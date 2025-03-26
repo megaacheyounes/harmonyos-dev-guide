@@ -41,7 +41,7 @@ Before proceeding, ensure that your have these requirements :
 
 ## 1. Generating a Keystore
 
-<details closed>
+<details open>
 <summary>Show details</summary>
 First, you need to generate a .p12 keystore. Follow these steps to create one:
 
@@ -67,7 +67,7 @@ After the above steps, you should now have `.p12` and `.csr` files, next steps w
 
 ## 2. Generate a certificate
 
-<details closed>
+<details open>
 <summary>show details</summary>
 
 Next, you need to upload the CSR file to Huawei AppGallery and download a `.cer` certificate.
@@ -91,7 +91,7 @@ Next, you need to upload the CSR file to Huawei AppGallery and download a `.cer`
 
 ## 3. Registering App ID
 
-<details > 
+<details open> 
 <summary>show details</summary>
 
 Lets your harmonyOS app in AppGallery Connect:
@@ -117,7 +117,7 @@ To run the app on test devices, you need to register the UDID (Unique Device Ide
 
 ### Finding your Device's UDID
 
-<details >
+<details open>
 <summary>UDID of a HarmonyOS device (phone, tablet, smartwatch..)</summary>
 
 If the device support cable connection, the just plug it to your computer and enable `HDC debugging` from `developer options`, If device does not support cable like a smartwatch (e.g. Huawei watch 4), then follow these steps to connect it Wirelessly:
@@ -135,7 +135,7 @@ If the device support cable connection, the just plug it to your computer and en
 
 </details>
 
-<details >
+<details open>
 <summary>UDID of a Lite HarmonyOS device (sportswatch..)</summary>
 
 For Lite devices like sportswatch (e.g. Huawei GT4), please follow these steps:
